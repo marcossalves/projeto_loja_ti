@@ -94,7 +94,24 @@ class Usuario{
         else{
             return false;
         }
+    }
+ public function apagarUsuario(){
+    $query = "delete from usuario where idusuario=:id";
 
+    $stmt = $this->conexao->prepare($query);
+
+    /*Vamos vincular os dados que veem do app ou navegador com os campos de
+    banco de dados
+    */
+    $stmt->bindParam(":id",$this->idusuario);
+  
+
+    if($stmt->execute()){
+        return true;
+    }
+    else{
+        return false;
+    }
 
 
     }
