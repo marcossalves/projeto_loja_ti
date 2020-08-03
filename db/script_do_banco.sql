@@ -1,5 +1,7 @@
 #Nome para o banco de dados será dbloja
 create database dbloja;
+-- exclui base de dados DROP database dbloja;
+-- exclui tabela  DROP TABLE nometabela;
 use dbloja;
 create table usuario(
 idusuario int auto_increment primary key,
