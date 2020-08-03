@@ -84,6 +84,29 @@ class Endereco{
         
     }
 
+    public function apagarEndereco(){
+        $query = "delete from endereco where idendereco=:id";
+    
+        $stmt = $this->conexao->prepare($query);
+    
+        /*Vamos vincular os dados que veem do app ou navegador com os campos de
+        banco de dados
+        */
+        $stmt->bindParam(":id",$this->idendereco);
+      
+    
+        if($stmt->execute()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    
+    
+        }
+
+
+
     
 }
 ?>
