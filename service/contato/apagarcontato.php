@@ -6,11 +6,11 @@ Vamos construir os cabeçalhos para trabalho com a api
 header("Access-Control-Allow-Origin:*");
 header("Content-Type:application/json;charset=utf-8");
 
-/*Para efetuar o cadastro de dados no banco é preciso
-informar a api que essa ação irá ocorrer com o metodo PUT, que 
-e responsável pela atualização de dados da api.
+/*Para deletar os  dados no banco é preciso
+informar a api que essa ação irá ocorrer com o metodo Delete, que 
+e responsável pela deleção de dados da api.
 */
-header("Access-Control-Allow-Methods:PUT");
+header("Access-Control-Allow-Methods:DELETE");
 
 include_once "../../config/database.php";
 
@@ -30,23 +30,19 @@ O cliente irá enviar os dado no formato Json. Porém
 */
 $data = json_decode(file_get_contents("php://input"));
 
-#Verificar se os dados vindos do usuário estão preenchidos
-if(!empty($data->idcontato)  && !empty ($data->email) && !empty ($data->telefone)){
+#Verificar se os dados vindos do contato estão preenchidos
+if(!empty($data->idcontato)){
 
-   
+    
     $contato->idcontato=$data->idcontato;
-    $contato->email = $data->email;
-    $contato->telefone = $data->telefone;
 
-
-
-    if($contato->alterarContato()){
+    if($contato->apagarContato()){
         header("HTTP/1.0 201");
-        echo json_encode(array("mensagem"=>"Contato alterado com sucesso!"));
+        echo json_encode(array("mensagem"=>"Contato excluido com sucesso!"));
     }
     else{
         header("HTTP/1.0 400");
-        echo json_encode(array("mensagem"=>"Não foi possível alterar o contato"));
+        echo json_encode(array("mensagem"=>"Não foi possível excluir contato"));
     }
 }
 else{
