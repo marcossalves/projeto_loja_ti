@@ -30,7 +30,7 @@ include_once "../../config/database.php";
 O arquivo usuario.php foi será incluido para que a classe Usuario 
 seja usada. Vale lembrar que esta classe possui o CRUD
 */
-include_once "../../domain/usuario.php";
+include_once "../../domain/login.php";
 
 /*
 Criamos um objeto chamado $database. É uma instância da classe Database 
@@ -54,7 +54,7 @@ Vamos fazer uma instância da classe usuário para ter acesso a todo
 o seu conteúdo.
 */
 
-$usuario = new Usuario($db);
+$usuario = new Login($db);
 
 $data= json_decode(file_get_contents("php://input"));
 $usuario->nomeusuario = $data->nomeusuario;
@@ -88,7 +88,18 @@ ao final
         $array_item = array(
             "idusuario"=>$idusuario,
             "nomeusuario"=>$nomeusuario,
-            "foto"=>$foto
+            "foto"=>$foto,
+            "nomecliente"=>$nomecliente,
+            "cpf"=>$cpf,
+            "sexo"=>$sexo,
+            "email"=>$email,
+            "telefone"=>$telefone,
+            "tipo"=>$tipo,
+            "logradouro"=>$logradouro,
+            "numero"=>$numero,
+            "complemento"=>$complemento,
+            "bairro"=>$bairro,
+            "cep"=>$cep,
         );
 
         array_push($usuario_arr["saida"],$array_item);
