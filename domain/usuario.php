@@ -115,6 +115,23 @@ class Usuario{
 
 
     }
+
+    
+     public function login (){
+
+        $query = "select * from usuario where nomeusuario=:n and senha=:s";
+
+        $stmt = $this ->conexao->prepare($query);
+        $this->senha = md5($this->senha);
+        $stmt->bindParam(":n",$this->nomeusuario);
+        $stmt->bindParam(":s",$this->senha);
+        $stmt->execute();
+        return $stmt;
+
+     }
+
+
+
 }
 
 ?>
